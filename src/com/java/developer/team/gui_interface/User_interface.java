@@ -9,7 +9,7 @@ import java.awt.*;
 public class User_interface extends JFrame {
     private JPanel panel,p2,p3,p4;
     private JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
-    private JButton bPlus,bMinus,bDivide,bEqually,bPercent;
+    private JButton bPlus,bMinus,bDivide,bEqually,bPercent,bMulti;
     private JButton bBackspace,bCe,bC;
     private JFormattedTextField ftf;
     private BorderLayout borLay;
@@ -18,6 +18,7 @@ public class User_interface extends JFrame {
     public User_interface(){
         setTitle("Калькулятор");
         setSize(270, 340);
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         initComponents();
         action();
@@ -81,14 +82,16 @@ public class User_interface extends JFrame {
         panel.add(p2, BorderLayout.CENTER);
 
         p3 = new JPanel();
-        gridL2 = new GridLayout(5,1,1,1);
+        gridL2 = new GridLayout(6,1,1,1);
         p3.setLayout(gridL2);
         bPercent = new JButton("%");
+        bMulti = new JButton("*");
         bDivide = new JButton("/");
         bMinus = new JButton("-");
         bPlus = new JButton("+");
         bEqually = new JButton("=");
         p3.add(bPercent);
+        p3.add(bMulti);
         p3.add(bDivide);
         p3.add(bMinus);
         p3.add(bPlus);
@@ -97,6 +100,7 @@ public class User_interface extends JFrame {
     }
 
     public void action(){
+
 
     }
 
