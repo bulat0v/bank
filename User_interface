@@ -1,0 +1,121 @@
+package com.java.developer.team.gui_interface;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
+
+/**
+ * Created by root on 27.01.2017.
+ */
+public class User_interface extends JFrame {
+    private JPanel panel,p2,p3,p4;
+    private JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0;
+    private JButton bPlus,bMinus,bDivide,bEqually,bPercent;
+    private JButton bBackspace,bCe,bC,bP,bSqrt;
+    private JFormattedTextField ftf;
+    private JLabel label;
+    private BorderLayout borLay;
+    private GridLayout gridL, gridL2;
+
+    public User_interface(){
+        setTitle("Калькулятор");
+        setSize(270, 340);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        action();
+        add(panel);
+        setVisible(true);
+    }
+
+    public void initComponents(){
+        panel = new JPanel();
+        borLay = new BorderLayout();
+        panel.setLayout(borLay);
+        label = new JLabel("");
+        label.setPreferredSize(new Dimension(270, 50));
+        panel.add(label, BorderLayout.NORTH);
+
+
+        p2 = new JPanel();
+        gridL = new GridLayout(5,3,1,1);
+        p2.setLayout(gridL);
+
+        bBackspace = new JButton("Backspace");
+        bBackspace.setPreferredSize(new Dimension(100,50));
+        bCe = new JButton("CE");
+        bCe.setSize(40,40);
+        bC = new JButton("C");
+        bC.setSize(40, 40);
+        b1 = new JButton("1");
+        b1.setSize(40, 40);
+        b2 = new JButton("2");
+        b2.setSize(40, 40);
+        b3 = new JButton("3");
+        b3.setSize(40, 40);
+        b4 = new JButton("4");
+        b3.setSize(40, 40);
+        b5 = new JButton("5");
+        b5.setSize(40, 40);
+        b6 = new JButton("6");
+        b6.setSize(40, 40);
+        b7 = new JButton("7");
+        b7.setSize(40, 40);
+        b8 = new JButton("8");
+        b8.setSize(40, 40);
+        b9 = new JButton("9");
+        b9.setSize(40, 40);
+        bP = new JButton(".");
+        bP.setSize(40, 40);
+        b0 = new JButton("0");
+        b9.setSize(40, 40);
+        bSqrt = new JButton("√");
+        bSqrt.setSize(40, 40);
+        p2.add(bBackspace);
+        p2.add(bCe);
+        p2.add(bC);
+        p2.add(b7);
+        p2.add(b8);
+        p2.add(b9);
+        p2.add(b4);
+        p2.add(b5);
+        p2.add(b6);
+        p2.add(b1);
+        p2.add(b2);
+        p2.add(b3);
+        p2.add(bP);
+        p2.add(b0);
+        p2.add(bSqrt);
+        panel.add(p2, BorderLayout.CENTER);
+
+        p3 = new JPanel();
+        gridL2 = new GridLayout(5,1,1,1);
+        p3.setLayout(gridL2);
+        bPercent = new JButton("%");
+        bPercent.setSize(40,40);
+        bDivide = new JButton("/");
+        bDivide.setSize(40,40);
+        bMinus = new JButton("-");
+        bMinus.setSize(40,40);
+        bPlus = new JButton("+");
+        bPlus.setSize(40,40);
+        bEqually = new JButton("=");
+        bEqually.setSize(40,40);
+        p3.add(bPercent);
+        p3.add(bDivide);
+        p3.add(bMinus);
+        p3.add(bPlus);
+        p3.add(bEqually);
+        panel.add(p3, "East");
+        final long Byte = 0; // line 3
+
+    }
+
+    public void action(){
+
+    }
+
+}
