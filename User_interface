@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
+import java.lang.Math;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 
 /**
  * Created by root on 27.01.2017.
@@ -18,6 +20,7 @@ public class User_interface extends JFrame {
     private JLabel label;
     private BorderLayout borLay;
     private GridLayout gridL, gridL2;
+    private String screen ="";
 
     public User_interface(){
         setTitle("Калькулятор");
@@ -26,16 +29,16 @@ public class User_interface extends JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        action();
+
         add(panel);
         setVisible(true);
     }
 
-    public void initComponents(){
+    private void initComponents(){
         panel = new JPanel();
         borLay = new BorderLayout();
         panel.setLayout(borLay);
-        label = new JLabel("");
+        label = new JLabel(screen);
         label.setPreferredSize(new Dimension(270, 50));
         panel.add(label, BorderLayout.NORTH);
 
@@ -44,36 +47,51 @@ public class User_interface extends JFrame {
         gridL = new GridLayout(5,3,1,1);
         p2.setLayout(gridL);
 
+
+
         bBackspace = new JButton("Backspace");
         bBackspace.setPreferredSize(new Dimension(100,50));
         bCe = new JButton("CE");
         bCe.setSize(40,40);
+
         bC = new JButton("C");
-        bC.setSize(40, 40);
+
         b1 = new JButton("1");
         b1.setSize(40, 40);
+        b1.addActionListener(pressed);
         b2 = new JButton("2");
         b2.setSize(40, 40);
+        b2.addActionListener(pressed);
         b3 = new JButton("3");
         b3.setSize(40, 40);
+        b3.addActionListener(pressed);
         b4 = new JButton("4");
-        b3.setSize(40, 40);
+        b4.setSize(40, 40);
+        b4.addActionListener(pressed);
         b5 = new JButton("5");
         b5.setSize(40, 40);
+        b5.addActionListener(pressed);
         b6 = new JButton("6");
         b6.setSize(40, 40);
+        b6.addActionListener(pressed);
         b7 = new JButton("7");
         b7.setSize(40, 40);
+        b7.addActionListener(pressed);
         b8 = new JButton("8");
         b8.setSize(40, 40);
+        b8.addActionListener(pressed);
         b9 = new JButton("9");
         b9.setSize(40, 40);
+        b9.addActionListener(pressed);
         bP = new JButton(".");
         bP.setSize(40, 40);
+        bP.addActionListener(pressed);
         b0 = new JButton("0");
-        b9.setSize(40, 40);
+        b0.setSize(40, 40);
+        b0.addActionListener(pressed);
         bSqrt = new JButton("√");
         bSqrt.setSize(40, 40);
+
         p2.add(bBackspace);
         p2.add(bCe);
         p2.add(bC);
@@ -94,16 +112,21 @@ public class User_interface extends JFrame {
         p3 = new JPanel();
         gridL2 = new GridLayout(5,1,1,1);
         p3.setLayout(gridL2);
-        bPercent = new JButton("%");
+        bPercent = new JButton("*");
         bPercent.setSize(40,40);
+
         bDivide = new JButton("/");
         bDivide.setSize(40,40);
+
         bMinus = new JButton("-");
         bMinus.setSize(40,40);
+
         bPlus = new JButton("+");
         bPlus.setSize(40,40);
+
         bEqually = new JButton("=");
         bEqually.setSize(40,40);
+
         p3.add(bPercent);
         p3.add(bDivide);
         p3.add(bMinus);
@@ -112,10 +135,121 @@ public class User_interface extends JFrame {
         panel.add(p3, "East");
         final long Byte = 0; // line 3
 
+        bPlus.addActionListener(new ActionListener() {//Добавляем слушатель на кнопку "плюс"
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buffer = Double.valueOf(label.getText());
+                label.setText("");
+                sign = "+";
+            }
+        });
+
+        bMinus.addActionListener(new ActionListener() {//Добавляем слушатель на кнопку "минус"
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buffer = Double.valueOf(label.getText());
+                label.setText("");
+                sign = "-";
+            }
+        });
+        bSqrt.addActionListener(new ActionListener() {//Добавляем слушатель на кнопку "√"
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buffer = Double.valueOf(label.getText());
+                label.setText((Math.sqrt(buffer))+"");
+                buffer = 0;
+                sign="+";
+
+            }
+        });
+
+        bDivide.addActionListener(new ActionListener() {//Добавляем слушатель на кнопку "/"
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buffer = Double.valueOf(label.getText());
+                label.setText("");
+                sign = "/";
+            }
+        });
+        bPercent.addActionListener(new ActionListener() {//Добавляем слушатель на кнопку "*"
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buffer = Double.valueOf(label.getText());
+                label.setText("");
+                sign = "*";
+            }
+        });
+
+        bC.addActionListener(new ActionListener() {//Добавляем слушатель на кнопку "C"
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                label.setText("");
+            }
+        });
+        bBackspace.addActionListener(new ActionListener() {//Добавляем слушатель на кнопку "backspace"
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String t = label.getText();
+                label.setText(t.substring(0,t.length()-1));
+
+            }
+        });
+
+        bEqually.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buffer2 = Double.valueOf(label.getText());
+                if("+".equals(sign)){
+                    label.setText((buffer+buffer2)+"");
+                }
+                if("-".equals(sign)){
+                    label.setText((buffer-buffer2)+"");
+                }
+                if("*".equals(sign)){
+                    label.setText((buffer*buffer2)+"");
+
+
+                }
+
+                if("/".equals(sign)){
+                   label.setText((buffer/buffer2)+"");
+                }
+                buffer = 0;
+                sign = "+";
+
+            }
+
+        });
+
     }
 
-    public void action(){
+     public class SymbolsLystener implements ActionListener {
+         public void actionPerformed(ActionEvent press) {
+              String  symbols = press.getActionCommand();
+             label.setText(label.getText()+symbols);
+         }
 
-    }
+     }
+     private ActionListener pressed = new SymbolsLystener();
+
+
+
+
+
+
+    private String command1;
+    private double buffer;
+    private double buffer2;
+    private double result;
+    private String sign;
+
+
+
+
+
+
+
+
 
 }
