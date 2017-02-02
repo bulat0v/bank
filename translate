@@ -1,0 +1,26 @@
+package translator;
+
+/**
+ *
+ * @author ф
+ */
+public class Translator {
+    public  String result;
+    private String translate(String s){
+        char Ch1=s.charAt(0);
+        result = s.substring(1)+Ch1+"ay";
+        return result;
+    }
+    public static void main(String[] args) {
+        Translator t = new Translator();
+        String a="terminator";
+        String b = "football";
+        String c = "happy";
+    
+        System.out.println(a+" В переводе с поросячьего будет "+t.translate(a));
+        System.out.println(b+" В переводе с поросячьего будет "+t.translate(b));
+        System.out.println(c+" В переводе с поросячьего будет "+t.translate(c));
+        
+    }
+    
+}
