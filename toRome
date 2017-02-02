@@ -1,0 +1,31 @@
+package rome;
+
+/* author Bulatov */
+
+public class Rome {
+    
+    public static int [] numbers = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+    public static String[] letters = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+   
+    public String result="";
+    public String arabicToRome(int arabic){
+        for(int i=0;i<numbers.length;i++){
+        while (arabic>=numbers[i]){
+            result+=letters[i];
+            arabic-=numbers[i];
+                 }
+        } 
+        
+        return result;
+    }
+   public static Rome r=new Rome();
+    
+    public static void main(String[] args) {
+        
+            
+            System.out.println(""+r.arabicToRome(654));
+        
+        
+    }
+    
+}
